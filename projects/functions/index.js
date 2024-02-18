@@ -12,7 +12,10 @@
 
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
-function returnFirstArgument() {}
+function returnFirstArgument(firstParam) {
+  return firstParam
+}
+
 
 /*
  Задание 2:
@@ -22,23 +25,35 @@ function returnFirstArgument() {}
  Пример:
    sumWithDefaults(10, 20) вернет 30
    sumWithDefaults(2, 4) вернет 6
+*/
+   function sumWithDefaults () {
+    let result = 0;
 
- 2.2 *: Значение по умолчанию для второго аргумента должно быть равно 100
+    for(let i = 0; i < arguments.length; i++) {
+        result += arguments[i];
+    }
+    return result;
+}
+
+ /* 2.2 *: Значение по умолчанию для второго аргумента должно быть равно 100
 
  Пример:
-   sumWithDefaults(10) вернет 110
- */
-function sumWithDefaults() {}
-
-/*
- Задание 3:
+   sumWithDefaults(10) вернет 110  
+*/
+// function sumWithDefaults (a, b = 100) {
+//     return a + b;
+// }
+   
+ /*Задание 3:
 
  Функция должна принимать другую функцию и возвращать результат вызова этой функции
 
  Пример:
    returnFnResult(() => 'привет') вернет 'привет'
  */
-function returnFnResult() {}
+   function returnFnResult(fn) {
+    return fn();
+}
 
 /*
  Задание 4:
@@ -53,7 +68,26 @@ function returnFnResult() {}
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter() {}
+  //  function returnCounter(F) {
+  //   return F();
+  // }
+  
+  // function count() {
+  //   console.log('function');
+  // }
+  
+  // const result = returnCounter(count);
+  
+  // console.log(result);
+  const returnCounter = function() {
+    let count = 0;
+    return function() {
+        return ++count;
+    }
+}
+
+const result = returnCounter();
+console.log(result());
 
 /*
  Задание 5 *:
@@ -64,7 +98,9 @@ function returnCounter() {}
  Пример:
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
-function returnArgumentsArray() {}
+function returnArgumentsArray(...args) {
+  return args;
+}
 
 export {
   returnFirstArgument,

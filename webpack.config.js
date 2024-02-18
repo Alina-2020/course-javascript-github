@@ -39,6 +39,7 @@ for (const project of projects) {
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 module.exports = {
+
   entry: entries,
   output: {
     clean: true,
@@ -61,7 +62,11 @@ module.exports = {
         options: { cacheDirectory: true },
       },
       {
-        test: /projects\/.+\.html$/,
+        
+          test: /\.html$/,
+          include: [path.join(__dirname, 'projects')],
+          use: [{ loader: './scripts/html-inject-loader.js' }, { loader: 'html-loader' }],
+        
         use: [{ loader: './scripts/html-inject-loader.js' }, { loader: 'html-loader' }],
       },
       {
